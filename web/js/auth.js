@@ -14,12 +14,26 @@ class AuthService {
     }
     
     static saveUser(user) {
+        if (!user) {
+            console.warn('Attempted to save null/undefined user');
+            return;
+        }
         localStorage.setItem('auth_user', JSON.stringify(user));
     }
     
     static getUser() {
         const user = localStorage.getItem('auth_user');
-        return user ? JSON.parse(user) : null;
+        
+        if (!user || user === 'undefined') {
+            return null;
+        }
+        
+        try {
+            return JSON.parse(user);
+        } catch (e) {
+            console.error('Failed to parse user data:', e);
+            return null;
+        }
     }
     
     static isLoggedIn() {

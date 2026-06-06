@@ -65,19 +65,39 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // === 3. ПОКАЗ ПРОФИЛЯ ===
     function showProfile() {
-        const user = AuthService.getUser();
+    const user = AuthService.getUser();
+    
+    if (user) {
+        document.getElementById('profileName').textContent = user.name || 'Пользователь';
+        document.getElementById('profileEmail').textContent = user.email || '';
         
-        if (user) {
-            document.getElementById('profileName').textContent = user.name || 'Пользователь';
-            document.getElementById('profileEmail').textContent = user.email || '';
+        // Аватар
+        const avatarImg = document.querySelector('#profileAvatar img');
+        if (avatarImg) {
+            avatarImg.src = user.avatar || 'https://i.pravatar.cc/120';
+        }
+        
+        // Стилизуем кнопку выхода
+        const logoutBtn = document.getElementById('logoutBtn');
+        if (logoutBtn) {
+            logoutBtn.style.backgroundColor = '#d63031';
+            logoutBtn.style.color = 'white';
+            logoutBtn.style.border = 'none';
+            logoutBtn.style.padding = '0.6rem 1.5rem';
+            logoutBtn.style.borderRadius = '25px';
+            logoutBtn.style.cursor = 'pointer';
+            logoutBtn.style.fontWeight = '500';
             
-            // Аватар
-            const avatarImg = document.querySelector('#profileAvatar img');
-            if (avatarImg) {
-                avatarImg.src = user.avatar || 'https://i.pravatar.cc/120';
-            }
+            // Добавляем эффект при наведении
+            logoutBtn.onmouseover = function() {
+                this.style.backgroundColor = '#b52b2b';
+            };
+            logoutBtn.onmouseout = function() {
+                this.style.backgroundColor = '#d63031';
+            };
         }
     }
+}
     
     // === 4. ОБРАБОТКА ВХОДА ===
     loginBtn.addEventListener('click', async function() {
