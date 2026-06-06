@@ -1,10 +1,101 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
-    <title>My App</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Афиша города</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
-    <h1>Welcome to my application!</h1>
-    <p><a href="hello">Go to HelloServlet</a></p>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Городская Афиша</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link active">Мероприятия</a>
+                <a href="profile.html" class="nav-link" id="profileNavLink">Личный кабинет</a>
+            </nav>
+            <div class="header-actions">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Поиск мероприятий...">
+                    <button id="searchBtn"><i class="fas fa-search"></i></button>
+                </div>
+                <div id="userStatus" class="user-status">
+                    <a href="profile.html" class="btn btn-outline">Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <div class="events-header">
+                <h1>Мероприятия в вашем городе</h1>
+                <div class="filters" id="categoryFilters">
+                    <button class="filter-btn active" data-category="all">Все</button>
+                    <button class="filter-btn" data-category="concert">
+                        <i class="fas fa-music"></i> Концерты
+                    </button>
+                    <button class="filter-btn" data-category="exhibition">
+                        <i class="fas fa-palette"></i> Выставки
+                    </button>
+                    <button class="filter-btn" data-category="workshop">
+                        <i class="fas fa-chalkboard-teacher"></i> Мастер-классы
+                    </button>
+                    <button class="filter-btn" data-category="cinema">
+                        <i class="fas fa-film"></i> Кино
+                    </button>
+                    <button class="filter-btn" data-category="comedy">
+                        <i class="fas fa-laugh"></i> Stand-up
+                    </button>
+                </div>
+            </div>
+
+            <div id="eventsGrid" class="events-grid">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Загрузка мероприятий...</p>
+                </div>
+            </div>
+
+            <div id="emptyState" class="empty-state" style="display: none;">
+                <i class="fas fa-calendar-times"></i>
+                <h3>Мероприятий не найдено</h3>
+                <p>Попробуйте изменить параметры поиска</p>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Самая полная афиша культурных мероприятий вашего города</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@afisha.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>Мы в соцсетях</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Городская Афиша</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/index.js"></script>
 </body>
 </html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет - Афиша</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Городская Афиша</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Мероприятия</a>
+                <a href="profile.html" class="nav-link active">Личный кабинет</a>
+            </nav>
+            <div class="header-actions">
+                <div id="userStatus" class="user-status">
+                    <a href="profile.html" class="btn btn-outline">Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <!-- Неавторизованный пользователь: форма входа/регистрации -->
+            <div id="authSection" class="auth-page">
+                <div class="auth-tabs">
+                    <button class="auth-tab active" data-tab="login">Вход</button>
+                    <button class="auth-tab" data-tab="register">Регистрация</button>
+                </div>
+
+                <!-- Форма входа -->
+                <div id="loginForm" class="auth-form active">
+                    <h2>Вход в личный кабинет</h2>
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Пароль</label>
+                        <input type="password" id="loginPassword" placeholder="Введите пароль">
+                    </div>
+                    <button id="loginBtn" class="btn btn-primary btn-block">
+                        <i class="fas fa-sign-in-alt"></i> Войти
+                    </button>
+                    <div id="loginError" class="form-error" style="display: none;"></div>
+                </div>
+
+                <!-- Форма регистрации -->
+                <div id="registerForm" class="auth-form">
+                    <h2>Регистрация</h2>
+                    <div class="form-group">
+                        <label for="registerName">Имя</label>
+                        <input type="text" id="registerName" placeholder="Ваше имя">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" placeholder="your@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Пароль</label>
+                        <input type="password" id="registerPassword" placeholder="Придумайте пароль">
+                    </div>
+                    <div class="form-group">
+                        <label for="registerAvatar">Аватар (URL, необязательно)</label>
+                        <input type="url" id="registerAvatar" placeholder="https://example.com/photo.jpg">
+                    </div>
+                    <button id="registerBtn" class="btn btn-primary btn-block">
+                        <i class="fas fa-user-plus"></i> Зарегистрироваться
+                    </button>
+                    <div id="registerError" class="form-error" style="display: none;"></div>
+                </div>
+            </div>
+
+            <!-- Авторизованный пользователь: личный кабинет -->
+            <div id="profileSection" class="profile-page" style="display: none;">
+                <div class="profile-header">
+                    <div class="profile-avatar" id="profileAvatar">
+                        <img src="" alt="Аватар">
+                    </div>
+                    <div class="profile-info">
+                        <h2 id="profileName"></h2>
+                        <p id="profileEmail"></p>
+                        <button id="logoutBtn" class="btn btn-outline">
+                            <i class="fas fa-sign-out-alt"></i> Выйти
+                        </button>
+                    </div>
+                </div>
+
+                <div class="profile-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-calendar-check"></i>
+                        <h3 id="eventsCount">0</h3>
+                        <p>Посещено мероприятий</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-comments"></i>
+                        <h3 id="messagesCount">0</h3>
+                        <p>Сообщений в чатах</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-friends"></i>
+                        <h3 id="friendsCount">0</h3>
+                        <p>Друзей приглашено</p>
+                    </div>
+                </div>
+
+                <div class="profile-events">
+                    <h3>Мои мероприятия</h3>
+                    <div id="myEvents" class="events-grid">
+                        <p class="text-muted">Вы пока не записались ни на одно мероприятие</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Самая полная афиша культурных мероприятий вашего города</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@afisha.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>Мы в соцсетях</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Городская Афиша</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/profile.js"></script>
+</body>
+</html>

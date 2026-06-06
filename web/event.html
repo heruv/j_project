@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Мероприятие - Афиша</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <a href="index.html" class="logo">
+                <i class="fas fa-calendar-alt"></i>
+                <span>Городская Афиша</span>
+            </a>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">Мероприятия</a>
+                <a href="profile.html" class="nav-link" id="profileNavLink">Личный кабинет</a>
+            </nav>
+            <div class="header-actions">
+                <div id="userStatus" class="user-status">
+                    <a href="profile.html" class="btn btn-outline">Войти</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="container">
+            <a href="index.html" class="back-button">
+                <i class="fas fa-arrow-left"></i> Назад к афише
+            </a>
+
+            <div id="eventDetail" class="event-detail">
+                <div class="loading">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Загрузка мероприятия...</p>
+                </div>
+            </div>
+
+            <!-- Чат обсуждения -->
+            <div id="chatSection" class="chat-section">
+                <div class="chat-header">
+                    <h3>
+                        <i class="fas fa-comments"></i>
+                        Обсуждение мероприятия
+                    </h3>
+                    <div class="chat-participants" id="chatParticipants">
+                        <!-- Аватарки участников -->
+                    </div>
+                </div>
+
+                <!-- Приглашение друзей -->
+                <div class="invite-box" id="inviteBox">
+                    <h4>Пригласить друзей к обсуждению</h4>
+                    <div class="invite-form">
+                        <input type="email" id="friendEmail" placeholder="Email друга">
+                        <button id="inviteBtn" class="btn btn-primary">
+                            <i class="fas fa-user-plus"></i> Пригласить
+                        </button>
+                    </div>
+                    <div class="invite-vk">
+                        <p>или</p>
+                        <button id="vkChatBtn" class="btn btn-vk">
+                            <i class="fab fa-vk"></i> Открыть обсуждение ВКонтакте
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Окно чата -->
+                <div class="chat-container" id="chatContainer">
+                    <div class="chat-messages" id="chatMessages">
+                        <div class="chat-empty">
+                            <i class="fas fa-comment-dots"></i>
+                            <p>Начните обсуждение первым!</p>
+                        </div>
+                    </div>
+                    <div class="chat-input-box">
+                        <input 
+                            type="text" 
+                            id="messageInput" 
+                            placeholder="Напишите сообщение..." 
+                            disabled
+                        >
+                        <button id="sendMessageBtn" class="btn btn-primary" disabled>
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                    <div class="chat-login-hint" id="chatLoginHint">
+                        <a href="profile.html">Войдите</a>, чтобы участвовать в обсуждении
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <div class="footer-section">
+                <h3>О нас</h3>
+                <p>Самая полная афиша культурных мероприятий вашего города</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <p><i class="fas fa-phone"></i> +7 (999) 123-45-67</p>
+                <p><i class="fas fa-envelope"></i> info@afisha.ru</p>
+            </div>
+            <div class="footer-section">
+                <h3>Мы в соцсетях</h3>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-vk"></i></a>
+                    <a href="#"><i class="fab fa-telegram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Городская Афиша</p>
+        </div>
+    </footer>
+
+    <script src="js/config.js"></script>
+    <script src="js/api.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/event.js"></script>
+</body>
+</html>

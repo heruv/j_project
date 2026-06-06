@@ -61,19 +61,7 @@
     </context-param>
 
 
-    <servlet>
-        <servlet-name>HelloServlet</servlet-name>
-        <servlet-class>com.example.HelloServlet</servlet-class>  <!-- Ваш класс -->
-    </servlet>
-
-    <servlet-mapping>
-        <servlet-name>HelloServlet</servlet-name>
-        <url-pattern>/hello</url-pattern>  <!-- URL для доступа -->
-    </servlet-mapping>
     
-    <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
-    </welcome-file-list>
     
     <!-- Servlet definitions for the servlets that make up
          your web application, including initialization
