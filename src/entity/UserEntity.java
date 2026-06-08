@@ -2,12 +2,10 @@ package entity;
 
 public class UserEntity {
     private int id = 0;
-    private String name = "test_user";
+    private String name = "";
     private String email = "";       
     private String password = "";
     
-    
-    public UserEntity() {}
     
     
     public int getId() {
@@ -41,4 +39,5 @@ public class UserEntity {
     public void setPassword(String password) {  
         this.password = password;
     }
+    
 }

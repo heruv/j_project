@@ -4,3 +4,4 @@ build.properties
 build/
 dist/
 lib/
+TestName.java
