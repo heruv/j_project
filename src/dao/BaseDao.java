@@ -1,5 +1,6 @@
 package dao;
 
+import java.util.List;
 import java.sql.*;
 import javax.naming.*;
 import javax.sql.DataSource;
@@ -11,7 +12,7 @@ public abstract class BaseDao <E, K> {
     public BaseDao() {
         try {
             Context context = new InitialContext();
-            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/postgres")
+            dataSource = (DataSource) context.lookup("java:comp/env/jdbc/postgres");
         } catch (Exception e) {
             e.printStackTrace();
             throw new RuntimeException("Failed to loookup DataSource", e);
@@ -26,6 +27,6 @@ public abstract class BaseDao <E, K> {
     public abstract List<E> getAll();
     public abstract E getEntityById(K id);
     public abstract E update(E entity);
-    public abstract boolean delete(K id)
+    public abstract boolean delete(K id);
     public abstract boolean create(E entity);
 }

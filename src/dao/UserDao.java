@@ -41,12 +41,38 @@ import entity.UserEntity;
     }
     
     @Override
-    public UserEntity getEntityById(int id) {
+    public UserEntity getEntityById(Integer id) {
         String sql = "SELECT * FROM users WHERE id = ?";
         ResultSet resultSet = null;
 
         try (Connection con = getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setInt(1, id);
+            
+            resultSet = statement.executeQuery();
+            
+            while (resultSet.next()) {
+                UserEntity user = new UserEntity();
+                
+                user.setId(resultSet.getInt("id"));
+                user.setName(resultSet.getString("name"));
+                user.setEmail(resultSet.getString("email"));
+                user.setPassword(resultSet.getString("password"));
+                
+                return user;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
+    }
+    
+    public UserEntity getEntityByEmail(String email) {
+        String sql = "SELECT * FROM users WHERE email = ?";
+        ResultSet resultSet = null;
+
+        try (Connection con = getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
+            statement.setString(1, email);
             
             resultSet = statement.executeQuery();
             
@@ -87,10 +113,12 @@ import entity.UserEntity;
         } catch (SQLException e) {
             e.printStackTrace();
         }
+        
+        return null;
     }
     
     @Override
-    public boolean delete(int id) {
+    public boolean delete(Integer id) {
         String sql = "DELETE FROM users WHERE id = ?";
 
         try (Connection con = getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
