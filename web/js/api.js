@@ -6,13 +6,13 @@ class ApiService {
         
         const options = {
             method: method,
-            headees: {
+            headers: { // ИСПРАВЛЕНО: было headees
                 'Content-Type': 'application/json'
             }
         };
         
         if (token) {
-            options.headers['Authorization'] = 'Bearer' + token;
+            options.headers['Authorization'] = 'Bearer ' + token; // ИСПРАВЛЕНО: добавлен пробел после Bearer
         }
         
         if (data) {
@@ -52,5 +52,34 @@ class ApiService {
     
     static getProfile() {
         return this.get(CONFIG.ENDPOINTS.PROFILE);
+    }
+
+    // ==========================================
+    // === РЕАЛИЗАЦИЯ ОТСУТСТВУЮЩИХ МЕТОДОВ ===
+    // ==========================================
+
+    // Получение информации о конкретном мероприятии
+    static getEventById(id) {
+        return this.get(CONFIG.ENDPOINTS.EVENT_BY_ID(id));
+    }
+
+    // Получение сообщений чата для мероприятия
+    static getChatMessages(eventId) {
+        return this.get(CONFIG.ENDPOINTS.CHAT(eventId));
+    }
+
+    // Отправка нового сообщения в чат
+    static sendMessage(eventId, text) {
+        return this.post(CONFIG.ENDPOINTS.CHAT(eventId), { text: text });
+    }
+
+    // Приглашение друга по email
+    static inviteFriend(eventId, email) {
+        return this.post(CONFIG.ENDPOINTS.INVITE(eventId), { email: email });
+    }
+
+    // Запись на мероприятие
+    static joinEvent(eventId) {
+        return this.post(CONFIG.ENDPOINTS.JOIN(eventId));
     }
 }
