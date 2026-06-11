@@ -7,8 +7,8 @@ const CONFIG = {
         LOGIN: '/auth/login',
         REGISTER: '/auth/register',
         PROFILE: '/auth/profile',
-        CHAT: function(eventId)   { return '/events/' + eventId + '/chat'; },
-        INVITE: function(eventId) { return '/events/' + eventId + '/invite'; },
-        JOIN: function(eventId)   { return '/events/' + eventId + '/join'; }
+        CHAT: function(eventId)   { return '/events/chat/' + eventId; },
+        INVITE: function(eventId) { return '/events/invite' + eventId; },
+        JOIN: function(eventId)   { return '/events/join' + eventId; }
     }
 };
