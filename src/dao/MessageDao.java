@@ -6,8 +6,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
-import java.util.ArrayList
+import java.util.ArrayList;
+import java.time.LocalDateTime;
 
 public class MessageDao extends BaseDao<MessageEntity, Integer> {
     @Override 
@@ -31,6 +33,8 @@ public class MessageDao extends BaseDao<MessageEntity, Integer> {
                 
                 lst.add(msg);
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         
         return lst;
@@ -75,7 +79,7 @@ public class MessageDao extends BaseDao<MessageEntity, Integer> {
             statement.setInt(1, newMessage.getUserId());
             statement.setInt(2, newMessage.getEventId());
             statement.setString(3, newMessage.getText());
-            statement.setTimeStamp(4, newMessage.getMsgTime());
+            statement.setTimestamp(4, Timestamp.valueOf(newMessage.getMsgTime()));
             statement.setInt(5, newMessage.getId());
 
             statement.executeUpdate();
@@ -101,25 +105,23 @@ public class MessageDao extends BaseDao<MessageEntity, Integer> {
             e.printStackTrace();
         }
         
-        return false
+        return false;
     }
     
     @Override 
-    public boolean create(MessageEntity message) {
+    public boolean create(MessageEntity newMessage) {
         String sql = "INSERT INTO messages (user_id, event_id, text, time) VALUES(?, ?, ?, ?)";
         
-        try(Connection con = getConnection(); PreparedStatement statement = con.prepareStatement(querry.toString())) {
+        try(Connection con = getConnection(); PreparedStatement statement = con.prepareStatement(sql)) {
             statement.setInt(1, newMessage.getUserId());
             statement.setInt(2, newMessage.getEventId());
             statement.setString(3, newMessage.getText());
-            statement.setTimeStamp(4, newMessage.getMsgTime());
+            statement.setTimestamp(4, Timestamp.valueOf(newMessage.getMsgTime()));
             statement.setInt(5, newMessage.getId());
 
             int rowsAffected = statement.executeUpdate();
             
             return rowsAffected > 0;
-            
-            return newMessage;
             
         } catch (SQLException e) {
             e.printStackTrace();

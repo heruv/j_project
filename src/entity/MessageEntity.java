@@ -1,4 +1,4 @@
-package enity;
+package entity;
 
 import java.time.LocalDateTime;
 
@@ -17,7 +17,7 @@ public class MessageEntity {
     public int getUserId() { return userId; }
     public void setUserId(int user_id) { this.userId = userId; }
     
-    public int getEventId() { return event_id; }
+    public int getEventId() { return eventId; }
     public void setEventId(int event_id) { this.eventId = eventId; }
     
     public String getText() { return text; }
